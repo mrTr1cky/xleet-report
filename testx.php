@@ -1,26 +1,18 @@
 <?php
 error_reporting(0);
-
-?>
-Upload is <b><color>WORKING</color></b><br>
-Check  Mailling ..<br>
+echo '<head>
+  <title>Email sending tester</title>
+</head>
+<body><b><color>Email sending tester</color></b><br>Write your email and click on send email test<br>
 <form method="post">
-<input type="text" placeholder="E-Mail" name="email" value="<?php print $_POST['email']?>"required ><input type="text" placeholder="Order ID" name="orderid" value="<?php print $_POST['orderid']?>" ><br>
-<input type="submit" value="Send test >>">
+<input type="email" name="email" style="background-color:whitesmoke;border:1px solid #FFF;outline:none;" required="" placeholder="username@gmail.com" value="' . $_POST['email'] . '">
+<input type="submit" name="send" value="Send Email Test" style="border:none;background-color: #65d05e;color:#fff;cursor:pointer;">
 </form>
 <br>
-<?php
-if (!empty($_POST['email'])){
-	if (!empty($_POST['email'])){
-		$xx =$_POST['orderid'];
-	}
-	else{
-
-		
-		$xx = rand();
-	
-	}
-	mail($_POST['email'],"Result Report Test - ".$xx,"WORKING !");
-	print "<b>send an report to [".$_POST['email']."] - Order : $xx</b>"; 
+</body>';
+if (isset($_POST['email']))
+{
+	$rnd = rand();
+	mail($_POST['email'],"Email Sending Test Report ID: " . $rnd ,"WORKING!");
+	print "<font color=orange><b>Email Sent To: " . $_POST['email'] . ", Report ID: " . $rnd . "</b></font>"; 
 }
-?>
